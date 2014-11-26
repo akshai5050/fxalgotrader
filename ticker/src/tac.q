@@ -1,4 +1,4 @@
-\l /Users/shaha1/q/project/q_to_r.q
+\l /Users/shaha1/repo/fxalgotrader/ticker/src/q_to_r.q
 lis:(`dt`pre!()();`dt`pre!()());
 
 tac:{[]

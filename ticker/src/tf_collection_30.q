@@ -1,5 +1,5 @@
-\l /Users/shaha1/q/project/tac.q
-\l /Users/shaha1/q/setup.q
+\l /Users/shaha1/repo/fxalgotrader/ticker/src/tac.q
+\l /Users/shaha1/repo/fxalgotrader/ticker/src/setup.q
 h: hopen `::5012
 \p 4321
 i:0;

@@ -1,5 +1,5 @@
 \l /Users/shaha1/q/demo.q
-Rcmd "source(\"/Users/shaha1/q/project/r/net_predict.r\")";
+Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/net_predict.r\")";
 nnet_predict:{
 	previous_ma: x;
 	Rset ["x";previous_ma];
