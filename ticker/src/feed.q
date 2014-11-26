@@ -8,6 +8,7 @@ ndat:{[]
 
 feed:{h("updat";x)}
 
+
 h:hopen `::5011
 
 while[not i=count trade; feed[.Q.ind[trade; enlist i]]; i+::1];
