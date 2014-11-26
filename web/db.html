@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/c.js"></script>
+
+<script>
+    var x;
+    var data;
+    var ws = new WebSocket('ws://localhost:4321');
+    // Required by c.js
+    ws.binaryType = 'arraybuffer';
+    // WebSocket event handlers
+    ws.onopen = function () {
+        console.log("Open");
+        // Sends a JSON encoded message
+        ws.sendcmd("sum",2,3);
+    };
+    ws.onclose = function () {
+        console.log("Closed")
+    };
+    ws.onmessage = function (event) {
+        data = JSON.parse(deserialize(event.data));
+        dataHandler(data)
+
+    };
+    ws.onerror = function (error) {
+        console.log("Error " + error.data);
+    };
+    // Used to send function calls to kdb+. e.g. ("sum",1,2,3)
+    ws.sendcmd = function (args) {
+        if(arguments.length<=1) return false;
+        var len = arguments.length,data = {},i;
+        // First argument used as func property, rest are used as arg properties
+        data['func'] = arguments[0];
+        for(i = 1;i<len;i++){
+            data['arg'+i] = arguments[i];
+        }
+        ws.send(serialize(JSON.stringify(data)));
+    };
+
+    function dataHandler(data) {
+        x  = data.data;
+        alert(x);
+        switch(data.type) {
+            case 7:
+                console.log("receiving number array" + x);
+
+
+            case -12:
+                console.log("receiving timestamp" + x);
+
+            case 99:
+                console.log(x.data);
+
+        }
+    };
+</script>
+</body>
+</html>

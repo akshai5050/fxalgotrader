@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Foreign Exchange Trader with Automated Predictions</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> old bootstrap theme -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/darkly/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/grid.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="js/themes/dark-unica.js"></script>
+    <script src="js/c.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+
+
+    <h3>Timeframes</h3>
+    <div class="row">
+        <div class="col-md-12" id="first_chart">
+
+        </div>
+
+        <h3>Predictions</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="second_chart">
+
+        </div>
+
+    </div>
+
+
+
+</div> <!-- /container -->
+
+
+<script>
+    var dat = [];
+    var series_global;
+    var series_actual;
+    var series_prediction;
+    var actual_dat = [];
+    var prediction_dat = [];
+    var tmp_dat = [];
+    var tmp_series = [];
+    $(function () {
+        //your code here
+        $('#second_chart').highcharts('StockChart', {
+            chart: {
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function () {
+
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        series_actual = series;
+                        var series = this.series[1];
+                        series_prediction = series;
+                    }
+                }
+            },
+            title: {
+                text: 'GBP/USD 30 Min OHLC Neural Net Predictions'
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+
+            rangeSelector: {
+                buttons: [{
+                    count: 1,
+                    type: 'minute',
+                    text: '1M'
+                }, {
+                    count: 5,
+                    type: 'minute',
+                    text: '5M'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                inputEnabled: false,
+                selected: 0
+            },
+
+            legend: {
+                enabled: true
+            },
+            exporting: {
+                enabled: false
+            },
+
+
+            series: [{
+                name: 'Actual',
+                data: actual_dat,
+                enableMouseTracking: false
+            }, {
+                name: 'Prediction',
+                data: prediction_dat,
+                enableMouseTracking: false
+            }]
+        });
+
+
+
+
+
+
+        $('#first_chart').highcharts('StockChart', {
+            zoomType: 'x',
+            animation: false, // don't animate in old IE
+            rangeSelector : {
+                buttons: [{
+                    type: 'hour',
+                    count: 1,
+                    text: '1h'
+                }, {
+                    type: 'day',
+                    count: 1,
+                    text: '1d'
+                }, {
+                    type: 'month',
+                    count: 1,
+                    text: '1m'
+                }, {
+                    type: 'year',
+                    count: 1,
+                    text: '1y'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                inputEnabled: false, // it supports only days
+                selected : 1 // day
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            navigator: {
+                adaptToUpdatedData: true
+            },
+            chart: {
+                renderTo: 'container',
+                type: 'ohlc',
+                marginRight: 10,
+                events: {
+                    load: function () {
+
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        series_global = series;
+                    }
+                }
+            },
+            title: {
+                text: 'GBP/USD 30 Min OHLC'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                type: 'candlestick',
+                name: 'Random data',
+                data: dat,
+                enableMouseTracking: false
+            }]
+        });
+    });
+
+    var x;
+    var ark;
+    var data;
+    var ws = new WebSocket('ws://localhost:4321');
+    // Required by c.js
+    ws.binaryType = 'arraybuffer';
+    // WebSocket event handlers
+    ws.onopen = function () {
+        console.log("Open");
+        // Sends a JSON encoded message
+        ws.sendcmd("sum",2,3);
+    };
+    ws.onclose = function () {
+        console.log("Closed")
+    };
+    ws.onmessage = function (event) {
+        data = JSON.parse(deserialize(event.data));
+        dataHandler(data);
+
+    };
+    ws.onerror = function (error) {
+        console.log("Error " + error.data);
+    };
+    // Used to send function calls to kdb+. e.g. ("sum",1,2,3)
+    ws.sendcmd = function (args) {
+        if(arguments.length<=1) return false;
+        var len = arguments.length,data = {},i;
+        // First argument used as func property, rest are used as arg properties
+        data['func'] = arguments[0];
+        for(i = 1;i<len;i++){
+            data['arg'+i] = arguments[i];
+        }
+        ws.send(serialize(JSON.stringify(data)));
+    };
+
+    function dataHandler(data) {
+        x  = data.data;
+        switch(x.table) {
+            case "nnet_predictions":
+                console.log(x.data.actual);
+                var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
+                var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
+                series_actual.addPoint(act, true);
+                series_prediction.addPoint(pred, true);
+                break;
+
+        }
+    };
+</script>
+
+
+</body>
+</html>
