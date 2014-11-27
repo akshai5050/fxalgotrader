@@ -4,7 +4,7 @@ require(nnet)
 require(caret)
 require(RSNNS)
 
-dat = read.csv("/tmp/new/joined_30.csv", header = TRUE)
+dat = read.csv("/tmp/new/joined_15.csv", header = TRUE)
 ma5 <- dat[,c("c")];
 
 inputs <- data.frame(Lag(ma5,5), Lag(ma5,4), Lag(ma5,3), Lag(ma5,2), Lag(ma5))
@@ -18,8 +18,8 @@ g$y <- patterns$targetsTrain
 
 #Fit model
 model <- train(y ~ x1 + x2 + x3 + x4 + x5, data = g, method='nnet', linout=TRUE, trace = TRUE,
-	                      #Grid of tuning parameters to try:
-	                      tuneGrid=expand.grid(.size=c(1,5,10),.decay=c(0,0.001,0.1))) 
+               #Grid of tuning parameters to try:
+               tuneGrid=expand.grid(.size=c(1,5,10),.decay=c(0,0.001,0.1))) 
 ps <- predict(model, patterns$inputsTest)
 
 #Examine results
@@ -30,5 +30,4 @@ x <- data.frame(actual=patterns$targetsTest, pred=ps)
 
 print(summary(lm(actual ~ pred, x))$r.squared)
 
-save(file = "~/repo/fxalgotrader/predictors/30_Min_Nnet_Model.RData", model)
-
+save(file = "~/repo/fxalgotrader/predictors/15_Min_Nnet_Model.RData", model)
