@@ -4,8 +4,10 @@ define(function (require) {
 
     var SocketWrapper = require("app/SocketWrapper");
     var OhlcSocketWrapper = require("app/ohlc_socketwrapper");
+    var SvrSocketWrapper = require("app/svr_socketwrapper");
     var Pred = require("app/pred");
     var Ohlc = require("app/ohlc");
+    var Svr = require("app/svr");
 
     var pred_15 = new Pred(15);
     var pred_30 = new Pred(30);
@@ -23,8 +25,13 @@ define(function (require) {
     var b = new OhlcSocketWrapper(4322, 30, ohlc_30.series_global);
     b.openConnection();
 
+    var svr_15 = new Svr(15);
+    var t = new SvrSocketWrapper(4321, 15, svr_15.series_actual, svr_15.series_prediction);
+    t.openConnection();
 
-
+    var svr_30 = new Svr(30);
+    var t = new SvrSocketWrapper(4322, 30, svr_30.series_actual, svr_30.series_prediction);
+    t.openConnection();
 
 });
 

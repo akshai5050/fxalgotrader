@@ -28,8 +28,8 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
-    <script src="js/themes/dark-unica.js"></script>
-    <script src="js/c.js"></script>
+    <script src="js/lib/highcharts/themes/dark-unica.js"></script>
+    <script src="js/lib/c.js"></script>
 
 </head>
 
@@ -147,84 +147,7 @@
 
 
 
-        $('#first_chart').highcharts('StockChart', {
-            zoomType: 'x',
-            animation: Highcharts.svg, // don't animate in old IE
-            rangeSelector : {
-                buttons: [{
-                    type: 'hour',
-                    count: 1,
-                    text: '1h'
-                }, {
-                    type: 'day',
-                    count: 1,
-                    text: '1d'
-                }, {
-                    type: 'month',
-                    count: 1,
-                    text: '1m'
-                }, {
-                    type: 'year',
-                    count: 1,
-                    text: '1y'
-                }, {
-                    type: 'all',
-                    text: 'All'
-                }],
-                inputEnabled: false, // it supports only days
-                selected : 1 // day
-            },
 
-            credits: {
-                enabled: false
-            },
-
-            navigator: {
-                adaptToUpdatedData: true
-            },
-            chart: {
-                renderTo: 'container',
-                type: 'ohlc',
-                marginRight: 10,
-                events: {
-                    load: function () {
-
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        series_global = series;
-                    }
-                }
-            },
-            title: {
-                text: 'GBP/USD 30 Min OHLC'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                type: 'candlestick',
-                name: 'Random data',
-                data: dat,
-                enableMouseTracking: false
-            }]
-        });
     });
 
     var x;

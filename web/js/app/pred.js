@@ -60,7 +60,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     selected: 0
                 },
                 title: {
-                    text: 'GBP/USD ' + this.timeframe + ' OHLC NNet'
+                    text: 'GBP/USD ' + this.timeframe + ' NNet'
                 },
                 credits: {
                     enabled: false

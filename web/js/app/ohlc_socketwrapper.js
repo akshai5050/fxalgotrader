@@ -32,7 +32,6 @@ define(["c"], function(c) {
                 this.sendcmd("sum",1,2)
             }
             this.ws.onmessage = function(event) {
-                console.log("arara");
                 var data = JSON.parse(deserialize(event.data));
                 self.dataHandler(data);
             }
