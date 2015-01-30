@@ -60,7 +60,7 @@ define(["c"], function(c) {
                     var y =[new Date(x.data.dt*1000).getTime(), x.data.o, x.data.h, x.data.l, x.data.c];
                     //series_global.addPoint(y, true);
                     break;
-                case "nnet_predictions":
+                case "svr_predictions":
                     var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
                     var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
                     this.series_actual.addPoint(act, true);

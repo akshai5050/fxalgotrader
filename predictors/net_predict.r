@@ -1,5 +1,3 @@
-load("/Users/shaha1/repo/fxalgotrader/predictors/nnet_model.RData")
-
 pred <- function(a) {
    df <- as.data.frame(rbind(c(a)))
    print(df)
