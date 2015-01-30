@@ -1,4 +1,6 @@
 \l /Users/shaha1/repo/fxalgotrader/ticker/src/q_to_r.q
+Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/arima_predict.r\")";
+
 
 lis:(`dt`pre!()();`dt`pre!()());
 lisSvr:(`dt`pre!()();`dt`pre!()());
@@ -44,6 +46,7 @@ ma20:([] dt:(); ma:());
 manum:0;
 nnet_predictions:([] dt:(); actual:(); predictions:());
 svr_predictions:([] dt:(); actual:(); predictions:());
+arima_predictions:([] dt:(); actual:(); predictions:());
 
 sliding_window:([] dt:(); v1:(); v2:(); v3:(); v4:(); v5:())
 
@@ -59,10 +62,15 @@ predictSvr:{
 	predicted: svr_predict[inputs];
 	:predicted}
 
+predictArima:{
+	inputs:x;
+	predicted: arima_predict[inputs];
+	:predicted}
+
 
 add_to_predict_window:{
 	val:x[`ma];
-	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[]]]}
+	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[]]]}
 
 
 publish_nnet_web:{
@@ -73,3 +81,7 @@ publish_nnet_web:{
 publish_svr_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last svr_predictions;
 		sendData\:[Sub `web; (`table`type`data)!(`svr_predictions;type web_entry; web_entry)]}
+
+publish_arima_web:{
+	web_entry:select dt: ts_to_unix[dt], actual, predictions from last arima_predictions;
+		sendData\:[Sub `web; (`table`type`data)!(`arima_predictions;type web_entry; web_entry)]}
