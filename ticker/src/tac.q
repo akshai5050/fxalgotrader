@@ -47,6 +47,7 @@ manum:0;
 nnet_predictions:([] dt:(); actual:(); predictions:());
 svr_predictions:([] dt:(); actual:(); predictions:());
 arima_predictions:([] dt:(); actual:(); predictions:());
+final_predictions:([] dt:(); actual:(); predictions:());
 
 sliding_window:([] dt:(); v1:(); v2:(); v3:(); v4:(); v5:())
 
@@ -70,7 +71,7 @@ predictArima:{
 
 add_to_predict_window:{
 	val:x[`ma];
-	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[]]]}
+	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-6#arima_predictions[`predictions];-6#nnet_predictions[`predictions];-6#svr_predictions[`predictions];-6#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[]]]}
 
 
 publish_nnet_web:{
@@ -85,3 +86,7 @@ publish_svr_web:{
 publish_arima_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last arima_predictions;
 		sendData\:[Sub `web; (`table`type`data)!(`arima_predictions;type web_entry; web_entry)]}
+
+publish_final_web:{
+	web_entry:select dt: ts_to_unix[dt], actual, predictions from last final_predictions;
+		sendData\:[Sub `web; (`table`type`data)!(`final_predictions;type web_entry; web_entry)]}

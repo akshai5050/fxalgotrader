@@ -6,10 +6,12 @@ define(function (require) {
     var OhlcSocketWrapper = require("app/ohlc_socketwrapper");
     var SvrSocketWrapper = require("app/svr_socketwrapper");
     var ArimaSocketWrapper = require("app/arima_socketwrapper");
+    var CombinedSocketWrapper = require("app/combined_socketwrapper");
     var Pred = require("app/pred");
     var Ohlc = require("app/ohlc");
     var Svr = require("app/svr");
     var Arima = require("app/arima");
+    var Combined = require("app/combined");
 
     var pred_15 = new Pred(15);
     var pred_30 = new Pred(30);
@@ -42,6 +44,14 @@ define(function (require) {
     var arima_30 = new Arima(30);
     var x = new ArimaSocketWrapper(4322, 30, arima_30.series_actual, arima_30.series_prediction);
     x.openConnection();
+
+    var combined_15 = new Combined(15);
+    var y = new ArimaSocketWrapper(4321, 15, combined_15.series_actual, combined_15.series_prediction);
+    y.openConnection();
+
+    var combined_30 = new Combined(30);
+    var u = new CombinedSocketWrapper(4322, 30, combined_30.series_actual, combined_30.series_prediction);
+    u.openConnection();
 
 });
 
