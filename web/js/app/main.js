@@ -46,7 +46,7 @@ define(function (require) {
     x.openConnection();
 
     var combined_15 = new Combined(15);
-    var y = new ArimaSocketWrapper(4321, 15, combined_15.series_actual, combined_15.series_prediction);
+    var y = new CombinedSocketWrapper(4321, 15, combined_15.series_actual, combined_15.series_prediction);
     y.openConnection();
 
     var combined_30 = new Combined(30);

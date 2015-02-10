@@ -20,11 +20,11 @@ arima_predict:{
 
 
 combined_predict:{[arima;nnet;svr;actual]
-	Rset ["arima"; arima];
-	Rset ["nnet"; nnet];
-	Rset ["svr"; svr];
+	Rset ["arima_predictions"; arima];
+	Rset ["nnet_predictions"; nnet];
+	Rset ["svr_predictions"; svr];
 	Rset ["actual"; actual];
-	a: Rget "get_final_prediction(arima,nnet,svr,actual)";
+	a: Rget "get_final_prediction(arima_predictions,nnet_predictions,svr_predictions,actual)";
 	:a[0]}
 
 
