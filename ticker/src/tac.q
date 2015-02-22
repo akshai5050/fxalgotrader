@@ -1,6 +1,9 @@
 \l /Users/shaha1/repo/fxalgotrader/ticker/src/q_to_r.q
 Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/arima_predict.r\")";
 
+capital:1000;
+current_actual:0;
+base_currency:1;
 
 lis:(`dt`pre!()();`dt`pre!()());
 lisSvr:(`dt`pre!()();`dt`pre!()());
@@ -71,8 +74,19 @@ predictArima:{
 
 add_to_predict_window:{
 	val:x[`ma];
-	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[]]]}
+	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];tradingStrategy[]]]}
 
+tradingStrategy:{
+	records:-2#final_predictions;
+	predicted:last records[`predictions];
+	current_actual:last records[`actual];
+	actual: first records[`actual];
+	$[predicted>actual;`predictedbigger;`predictedsmaller];
+	trade[predicted;actual;current_actual]}
+
+trade:{[predicted;actual;current_actual]
+	if[(predicted>actual)&not base_currency;capital::(1%current_actual)*capital;base_currency::1]
+	if[(predicted<actual)&base_currency;capital::current_actual*capital;base_currency::0]}
 
 publish_nnet_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last nnet_predictions;
