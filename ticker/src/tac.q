@@ -74,7 +74,7 @@ predictArima:{
 
 add_to_predict_window:{
 	val:x[`ma];
-	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];tradingStrategy[]]]}
+	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];tradingStrategy[];publish_nnet_errors_web[x[`dt]]]]}
 
 tradingStrategy:{
 	records:-2#final_predictions;
@@ -104,3 +104,7 @@ publish_arima_web:{
 publish_final_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last final_predictions;
 		sendData\:[Sub `web; (`table`type`data)!(`final_predictions;type web_entry; web_entry)]}
+
+publish_nnet_errors_web:{
+	web_entry:enlist `rmse`mape! nnet_rmse[][0],nnet_rmse[][1];
+		sendData\:[Sub `web; (`table`type`data)!(`nnet_errors;type web_entry; web_entry)]}
