@@ -2,6 +2,7 @@ library(forecast)
 library(lm.beta)
 pred_arima <- function(a) {
    res <- forecast(auto.arima(a),h=1)$mean[1]
+   print(a)
    res
 }	
 

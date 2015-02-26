@@ -19,13 +19,12 @@ ita:{[]
 	`ma5 insert (d;0n);
 	`ma10 insert (d;0n);
 	`ma20 insert (d;0n);
+	`closing insert (d;0n);
 	/ `nnet_predictions insert (add_hours[d;0.5];0n;0n);
 	}
 
-tanalysis:{
-	emavg[5];
-	emavg[10];
-	emavg[20];
+tanalysis:{	
+	closingprice[];
 	}
 
 wema:{((x-1)#0n),i,{z+x*y}\[i:avg x#y;1-a;(x _y)*a:2%1+x]}
@@ -37,15 +36,20 @@ emavg:{[m1t]
 		c:enlist(=;`dt;last cdata[`start_dt]);
 		a:(enlist `ma)!(enlist m1);
 		update ma:m1 from manum where dt=last cdata[`start_dt];
-		if[m1t=5; add_to_predict_window[last ma5]];
+		/ if[m1t=5; add_to_predict_window[last ma5]];
 		/ if[m1t=5;[predicted:nnet_predict[last cdata[`c];m1]; update predictions:predicted from `nnet_predictions where dt=add_hours[last cdata[`start_dt];0.5]]]
 		]} 
 
+closingprice:{
+	close:last cdata[`c];
+	update c:close from `closing where dt=last cdata[`start_dt];
+	add_to_predict_window[last closing]}
 
 ma:([] dt:(); ma:());
 ma5:([] dt:(); ma:());
 ma10:([] dt:(); ma:());
 ma20:([] dt:(); ma:());
+closing:([] dt:(); c:());
 manum:0;
 nnet_predictions:([] dt:(); actual:(); predictions:());
 svr_predictions:([] dt:(); actual:(); predictions:());
@@ -73,7 +77,7 @@ predictArima:{
 
 
 add_to_predict_window:{
-	val:x[`ma];
+	val:x[`c];
 	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];tradingStrategy[];publish_nnet_errors_web[x[`dt]]]]}
 
 tradingStrategy:{

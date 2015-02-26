@@ -1,6 +1,6 @@
 / generate data for rdb demo
 
-\l /Users/shaha1/db
+\l /Users/shaha1/db1
 i:0
 
 ndat:{[]
