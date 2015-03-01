@@ -23,3 +23,21 @@ get_final_prediction <- function(arima_predictions,nnet_predictions,svr_predicti
   
   crossprod(x,latest_predictions)[1]
 }
+
+check_confidence_interval <- function(actual, predictions, current_actual, current_predicted) {
+
+
+	df <- data.frame(actual,predictions)
+
+	newdata <- data.frame(actual=current_actual)
+
+	model <- lm(predictions ~ actual)
+
+	confidence_interval <- predict(model, newdata, interval="predict") 
+
+	if (current_predicted <= confidence_interval[,"upr"] && current_predicted >= confidence_interval[,"lwr"]) {
+	  1
+	} else {
+	  0
+	}
+}

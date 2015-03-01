@@ -27,6 +27,14 @@ combined_predict:{[arima;nnet;svr;actual]
 	a: Rget "get_final_prediction(arima_predictions,nnet_predictions,svr_predictions,actual)";
 	:a[0]}
 
+confidence_interval:{[actuals;predictionss;current_actuals;current_predicteds]
+	Rset ["actual"; actuals];
+	Rset ["predictions"; predictionss];
+	Rset ["current_actual"; current_actuals];
+	Rset ["current_predicted"; current_predicteds];
+	a: Rget "check_confidence_interval(actual, predictions, current_actual, current_predicted)";
+	:a[0]}
+
 arima_rmse:{
 	rmse:sqrt((sum (arima_predictions[`actual]-arima_predictions[`predictions]) xexp 2)%count arima_predictions[`actual]);
 	mape:avg(abs[arima_predictions[`actual]-arima_predictions[`predictions]]%arima_predictions[`actual])*100;
@@ -40,7 +48,7 @@ nnet_rmse:{
 
 svr_rmse:{
 	rmse:sqrt((sum (svr_predictions[`actual]-svr_predictions[`predictions]) xexp 2)%count svr_predictions[`actual]);
-	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])*100;
+	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])* ;
 	:rmse, mape}
 
 combined_rmse:{
