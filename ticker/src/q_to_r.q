@@ -48,7 +48,7 @@ nnet_rmse:{
 
 svr_rmse:{
 	rmse:sqrt((sum (svr_predictions[`actual]-svr_predictions[`predictions]) xexp 2)%count svr_predictions[`actual]);
-	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])* ;
+	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])*100;
 	:rmse, mape}
 
 combined_rmse:{

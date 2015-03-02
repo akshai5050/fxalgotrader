@@ -80,7 +80,7 @@ predictArima:{
 
 add_to_predict_window:{
 	val:x[`c];
-	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];if[(count final_predictions)>=21;tradingStrategy[]];publish_nnet_errors_web[x[`dt]]]]}
+	$[(count lis[0;`pre]) < 5; lis[0;`pre],::val;[lis[0;`dt]:x[`dt];`nnet_predictions insert (x[`dt]; val; predict[lis[0;`pre]]);`svr_predictions insert (x[`dt]; val; predictSvr[lis[0;`pre]]);`arima_predictions insert (x[`dt]; val; predictArima[lis[0;`pre]]);`final_predictions insert (x[`dt]; val; combined_predict[-20#arima_predictions[`predictions];-20#nnet_predictions[`predictions];-20#svr_predictions[`predictions];-20#arima_predictions[`actual]]);lis[1;`pre]::1_lis[0;`pre];lis::1_lis;lis,::(`dt`pre)!()();lis[0;`pre],::val;publish_nnet_web[];publish_svr_web[];publish_arima_web[];publish_final_web[];if[(count final_predictions)>=21;tradingStrategy[]];publish_nnet_errors_web[x[`dt]];publish_svr_errors_web[x[`dt]];publish_arima_errors_web[x[`dt]];publish_combined_errors_web[x[`dt]]]]}
 
 tradingStrategy:{
 	records:-2#final_predictions;
@@ -123,9 +123,21 @@ publish_final_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last final_predictions;
 		sendData\:[Sub `web; (`table`type`data)!(`final_predictions;type web_entry; web_entry)]}
 
-publish_nnet_errors_web:{
-	web_entry:enlist `rmse`mape! nnet_rmse[][0],nnet_rmse[][1];
-		sendData\:[Sub `web; (`table`type`data)!(`nnet_errors;type web_entry; web_entry)]}
+publish_nnet_errors_web:{[dt]
+	web_entry:`dt`mape! ts_to_unix[dt],nnet_rmse[][1];
+		sendData\:[Sub `web; (`table`type`data)!(`nnet_mape;type web_entry; web_entry)]}
+
+publish_svr_errors_web:{[dt]
+	web_entry:`dt`mape! ts_to_unix[dt],svr_rmse[][1];
+		sendData\:[Sub `web; (`table`type`data)!(`svr_mape;type web_entry; web_entry)]}
+
+publish_arima_errors_web:{[dt]
+	web_entry:`dt`mape! ts_to_unix[dt],arima_rmse[][1];
+		sendData\:[Sub `web; (`table`type`data)!(`arima_mape;type web_entry; web_entry)]}
+
+publish_combined_errors_web:{[dt]
+	web_entry:`dt`mape! ts_to_unix[dt],combined_rmse[][1];
+		sendData\:[Sub `web; (`table`type`data)!(`combined_mape;type web_entry; web_entry)]}
 
 publish_basic_strategy_profit:{[dt;current_actual]
 	/ 0N!$[base_currency;capital;(1%current_actual)*capital];
