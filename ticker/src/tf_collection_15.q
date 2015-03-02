@@ -67,8 +67,9 @@ upd:{[ts;t]
 	sdata[t];
 	}
 
-.z.pc:{-1"Connection opened!"; 0N!"x";
-	web::x}
+.z.pc:{Sub[`web]: Sub[`web] except 1#x}
+
+
 
 get_train_data:{
 	if[not extracted_learning;

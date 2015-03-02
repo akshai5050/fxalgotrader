@@ -35,7 +35,6 @@ define(function() {
         };
 
             this.dataHandler = function(data) {
-                alert("fsafas");
                 x  = data.data;
                 switch(x.table) {
                     case "cdata":

@@ -52,8 +52,6 @@ define(["c"], function(c) {
         },
 
         dataHandler : function(data) {
-            alert(this);
-            alert("fsafas");
             var x  = data.data;
             switch(x.table) {
                 case "cdata":

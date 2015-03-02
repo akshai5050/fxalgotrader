@@ -1,15 +1,14 @@
 define(["c"], function(c) {
     "use strict";
 
-    function SvrSocketWrapper(socket, tf, series_actual, series_prediction) {
-        if (!(this instanceof SvrSocketWrapper)) {
-            throw new TypeError("SocketWrapper constructor cannot be called as a function");
+    function BasicStrategySocketWrapper(socket, tf, series_profit) {
+        if (!(this instanceof BasicStrategySocketWrapper)) {
+            throw new TypeError("BasicStrategySocketWrapper constructor cannot be called as a function");
         }
         this.socket = socket;
         this.tf = tf;
-        this.series_actual = series_actual;
-        this.series_prediction = series_prediction;
         this.ws = new WebSocket("ws://localhost:" + socket);
+        this.series_profit = series_profit;
         //this.tp = tp;
         //this.actual = arr1;
         //this.prediction = arr2;
@@ -18,14 +17,14 @@ define(["c"], function(c) {
 
 
 
-    SvrSocketWrapper.prototype = {
+    BasicStrategySocketWrapper.prototype = {
 
         openConnection : function() {
 
             var self = this;
 
             this.ws.onopen = function() {
-                console.log("Connected to svr");
+                console.log("Connected to basic strategy socketwrapper");
                 this.binaryType = 'arraybuffer'
                 this.sendcmd("sum",1,2)
             }
@@ -59,18 +58,23 @@ define(["c"], function(c) {
                     var y =[new Date(x.data.dt*1000).getTime(), x.data.o, x.data.h, x.data.l, x.data.c];
                     //series_global.addPoint(y, true);
                     break;
-                case "svr_predictions":
-                    var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
-                    var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
-                    this.series_actual.addPoint(act, true);
+                case "basic_strategy_profit":
+                    console.log(x);
+                    //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
+                    //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
+                    var profit =[new Date(x.data.dt*1000).getTime(), x.data.capital];
+                    //this.series_actual.addPoint(act, true);
                     //console.log(x.data.actual);
-                    this.series_prediction.addPoint(pred, true);
+                    //this.series_prediction.addPoint(pred, true);
+                    this.series_profit.addPoint(profit, true);
                     break;
 
             }
         }
     }
 
-    return SvrSocketWrapper;
+    return BasicStrategySocketWrapper;
 
-});
+});/**
+ * Created by shaha1 on 30/01/15.
+ */

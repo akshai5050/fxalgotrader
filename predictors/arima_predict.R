@@ -28,10 +28,11 @@ check_confidence_interval <- function(actual, predictions, current_actual, curre
 
 
 	df <- data.frame(actual,predictions)
+	print(df)
 
 	newdata <- data.frame(actual=current_actual)
 
-	model <- lm(predictions ~ actual)
+	model <- lm(predictions ~ actual, df)
 
 	confidence_interval <- predict(model, newdata, interval="predict") 
 

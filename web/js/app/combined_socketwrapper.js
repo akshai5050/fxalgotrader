@@ -52,7 +52,6 @@ define(["c"], function(c) {
         },
 
         dataHandler : function(data) {
-            alert(this);
             var x  = data.data;
             switch(x.table) {
                 case "cdata":

@@ -2,7 +2,6 @@
 Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/arima_predict.r\")";
 
 capital:1000;
-current_actual:0;
 base_currency:1;
 
 capital_confidence:1000;
@@ -87,17 +86,16 @@ tradingStrategy:{
 	records:-2#final_predictions;
 	predicted:last records[`predictions];
 	current_actual:last records[`actual];
+	dt: last records[`dt];
 	actual: first records[`actual];
 	$[predicted>actual;`predictedbigger;`predictedsmaller];
 	trade[predicted;actual;current_actual];
+	publish_basic_strategy_profit[dt;current_actual];
+	publish_confidence_strategy_profit[dt;current_actual];
 	
 	data:select from final_predictions where i within((count final_predictions)-21;(count final_predictions)-2);
-	confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]]}
-	/ trade_confidence[predicted;actual;current_actual;confidence]}
-
-new:{
-	data:select from final_predictions where i within((count final_predictions)-21;(count final_predictions)-2);
-	confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]]}
+	confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]];
+	trade_confidence[predicted;actual;current_actual;confidence]}
 
 trade:{[predicted;actual;current_actual]
 	if[(predicted>actual)&not base_currency;capital::(1%current_actual)*capital;base_currency::1]
@@ -105,7 +103,7 @@ trade:{[predicted;actual;current_actual]
 
 trade_confidence:{[predicted;actual;current_actual;confidence]
 	confidence:"i"$confidence;
-	if[(predicted>actual)&not base_currency_confidence&confidence;capital_confidence::(1%current_actual)*capital_confidence;base_currency_confidence::1]
+	if[(predicted>actual)&not base_currency_confidence&confidence;capital_confidence::(1%current_actual)*capital_confidence;base_currency_confidence::1];
 	if[(predicted<actual)&base_currency_confidence&confidence;capital_confidence::current_actual*capital_confidence;base_currency_confidence::0]}
 
 publish_nnet_web:{
@@ -128,3 +126,13 @@ publish_final_web:{
 publish_nnet_errors_web:{
 	web_entry:enlist `rmse`mape! nnet_rmse[][0],nnet_rmse[][1];
 		sendData\:[Sub `web; (`table`type`data)!(`nnet_errors;type web_entry; web_entry)]}
+
+publish_basic_strategy_profit:{[dt;current_actual]
+	/ 0N!$[base_currency;capital;(1%current_actual)*capital];
+	web_entry:`dt`capital!ts_to_unix[dt],$[base_currency;capital;(1%current_actual)*capital];
+		sendData\:[Sub `web; (`table`type`data)!(`basic_strategy_profit;type web_entry; web_entry)]}
+
+publish_confidence_strategy_profit:{[dt;current_actual]
+	/ 0N!$[base_currency;capital;(1%current_actual)*capital];
+	web_entry:`dt`capital!ts_to_unix[dt],$[base_currency_confidence;capital_confidence;(1%current_actual)*capital_confidence];
+		sendData\:[Sub `web; (`table`type`data)!(`confidence_strategy_profit;type web_entry; web_entry)]}
