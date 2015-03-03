@@ -1,10 +1,10 @@
 \l /Users/shaha1/repo/fxalgotrader/ticker/src/q_to_r.q
 Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/arima_predict.r\")";
 
-capital:1000;
+capital:100000;
 base_currency:1;
 
-capital_confidence:1000;
+capital_confidence:100000;
 base_currency_confidence:1;
 
 lis:(`dt`pre!()();`dt`pre!()());
@@ -89,22 +89,22 @@ tradingStrategy:{
 	dt: last records[`dt];
 	actual: first records[`actual];
 	$[predicted>actual;`predictedbigger;`predictedsmaller];
-	trade[predicted;actual;current_actual];
+	trade[predicted;actual;current_actual;dt];
 	publish_basic_strategy_profit[dt;current_actual];
 	publish_confidence_strategy_profit[dt;current_actual];
 	
 	data:select from final_predictions where i within((count final_predictions)-21;(count final_predictions)-2);
 	confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]];
-	trade_confidence[predicted;actual;current_actual;confidence]}
+	trade_confidence[predicted;actual;current_actual;confidence;dt]}
 
-trade:{[predicted;actual;current_actual]
-	if[(predicted>actual)&not base_currency;capital::(1%current_actual)*capital;base_currency::1]
-	if[(predicted<actual)&base_currency;capital::current_actual*capital;base_currency::0]}
+trade:{[predicted;actual;current_actual;dt]
+	if[(predicted>actual)&not base_currency;capital::(1%current_actual)*capital;base_currency::1;publish_order_book_basic[dt;current_actual;`bid]]
+	if[(predicted<actual)&base_currency;capital::current_actual*capital;base_currency::0;publish_order_book_basic[dt;current_actual;`ask]]}
 
-trade_confidence:{[predicted;actual;current_actual;confidence]
+trade_confidence:{[predicted;actual;current_actual;confidence;dt]
 	confidence:"i"$confidence;
-	if[(predicted>actual)&not base_currency_confidence&confidence;capital_confidence::(1%current_actual)*capital_confidence;base_currency_confidence::1];
-	if[(predicted<actual)&base_currency_confidence&confidence;capital_confidence::current_actual*capital_confidence;base_currency_confidence::0]}
+	if[(predicted>actual)&(not base_currency_confidence)&confidence;capital_confidence::(1%current_actual)*capital_confidence;base_currency_confidence::1;publish_order_book_confidence[dt;current_actual;`bid]];
+	if[(predicted<actual)&base_currency_confidence&confidence;capital_confidence::current_actual*capital_confidence;base_currency_confidence::0;publish_order_book_confidence[dt;current_actual;`ask]]}
 
 publish_nnet_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last nnet_predictions;
@@ -148,3 +148,11 @@ publish_confidence_strategy_profit:{[dt;current_actual]
 	/ 0N!$[base_currency;capital;(1%current_actual)*capital];
 	web_entry:`dt`capital!ts_to_unix[dt],$[base_currency_confidence;capital_confidence;(1%current_actual)*capital_confidence];
 		sendData\:[Sub `web; (`table`type`data)!(`confidence_strategy_profit;type web_entry; web_entry)]}
+
+publish_order_book_basic:{[dt;current_actual;bid_ask]
+	web_entry:`dt`current_actual`bid_ask!ts_to_unix[dt],current_actual,bid_ask;
+	sendData\:[Sub `web; (`table`type`data)!(`basic_order_book;type web_entry; web_entry)]}
+
+publish_order_book_confidence:{[dt;current_actual;bid_ask]
+	web_entry:`dt`current_actual`bid_ask!ts_to_unix[dt],current_actual,bid_ask;
+	sendData\:[Sub `web; (`table`type`data)!(`confidence_order_book;type web_entry; web_entry)]}

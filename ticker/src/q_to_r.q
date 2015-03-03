@@ -40,6 +40,13 @@ arima_rmse:{
 	mape:avg(abs[arima_predictions[`actual]-arima_predictions[`predictions]]%arima_predictions[`actual])*100;
 	:rmse, mape}
 
+conf_calculate:{
+	sd:sqrt[(1%((count final_predictions)-1))*(sum((final_predictions[`actual]-final_predictions[`predictions]) xexp 2))];
+	x_bar:avg((final_predictions[`actual]-final_predictions[`predictions])%final_predictions[`actual]);
+	conf_interval_lower:x_bar - (1.96 * sd%sqrt[count final_predictions]);
+	conf_interval_upper:x_bar + (1.96 * sd%sqrt[count final_predictions]);
+	:conf_interval_lower, conf_interval_upper}
+
 
 nnet_rmse:{
 	rmse:sqrt((sum (nnet_predictions[`actual]-nnet_predictions[`predictions]) xexp 2)%count nnet_predictions[`actual]);
@@ -48,7 +55,7 @@ nnet_rmse:{
 
 svr_rmse:{
 	rmse:sqrt((sum (svr_predictions[`actual]-svr_predictions[`predictions]) xexp 2)%count svr_predictions[`actual]);
-	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])*100;
+	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])*100;	
 	:rmse, mape}
 
 combined_rmse:{

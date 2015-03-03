@@ -21,7 +21,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
 
             $('#basic_strategy').highcharts({
                 chart: {
-                    type: 'spline',
+                    zoomType: 'x',
                     animation: Highcharts.svg, // don't animate in old IE
                     marginRight: 10,
                     events: {
@@ -58,7 +58,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     selected: 0
                 },
                 title: {
-                    text: 'GBP/USD ' + this.timeframe + ' Capital'
+                    text: 'Basic Strategy Capital'
                 },
                 credits: {
                     enabled: false
@@ -69,14 +69,36 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                 },
                 yAxis: {
                     title: {
-                        text: 'Value'
+                        text: '£'
                     }
                 },
                 spline: {
                     connectNulls: true
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
+                },
+
+                plotOptions: {
+                    area: {
+                        fillColor: {
+                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]],
+                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        threshold: null
+                    }
                 },
                 exporting: {
                     enabled: false
@@ -84,6 +106,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
 
 
                 series: [{
+                    type: 'area',
                     name: 'Capital',
                     enableMouseTracking: false,
                     marker: {

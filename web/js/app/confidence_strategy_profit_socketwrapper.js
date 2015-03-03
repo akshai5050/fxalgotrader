@@ -59,14 +59,39 @@ define(["c"], function(c) {
                     //series_global.addPoint(y, true);
                     break;
                 case "confidence_strategy_profit":
-                    console.log(x);
+                    //console.log(x);
                     //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
                     //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
                     var profit =[new Date(x.data.dt*1000).getTime(), x.data.capital];
+                    var oldProfit = parseFloat($("#confidence_strategy_header").text().split("%")[0]);
+                    if (oldProfit <= (((x.data.capital-100000)/100000)*100).toFixed(2)) {
+                        $("#confidence_strategy_header").removeClass( "red" ).addClass( "green");
+                    } else{
+                        $("#confidence_strategy_header").removeClass( "green" ).addClass( "red");
+                    }
+                    $("#confidence_strategy_header").text((((x.data.capital-100000)/100000)*100).toFixed(2) + '%');
                     //this.series_actual.addPoint(act, true);
                     //console.log(x.data.actual);
                     //this.series_prediction.addPoint(pred, true);
                     this.series_profit.addPoint(profit, true);
+                    break;
+                case "confidence_order_book":
+                    console.log(x);
+                    console.log(x.data.bid_ask);
+                    if(x.data.bid_ask == "bid") {
+                        alert("Hello");
+                        //  $('#basic_strategy_table > tbody > tr:first').before('<tr><td>'+new Date(x.data.dt*1000)+'</td><td>'+ x.data.current_actual +'</td><td></td></tr>');
+                        $('<tr><td>'+new Date(x.data.dt*1000)+'</td><td class="green">'+ x.data.current_actual+'</td><td></td></tr>').prependTo('#confidence_strategy_table > tbody');
+                    } else {
+                        $('<tr><td>'+new Date(x.data.dt*1000)+'</td><td></td><td class="red">'+ x.data.current_actual+'</td></tr>').prependTo('#confidence_strategy_table > tbody');
+                    }
+                    //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
+                    //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
+                    //var profit =[new Date(x.data.dt*1000).getTime(), x.data.capital];
+                    //this.series_actual.addPoint(act, true);
+                    //console.log(x.data.actual);
+                    //this.series_prediction.addPoint(pred, true);
+                    //this.series_profit.addPoint(profit, true);
                     break;
 
             }

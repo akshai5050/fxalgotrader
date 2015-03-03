@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="222c8aba-522c-4a61-9035-65d4f5583a7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/arima_error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/arima_error_socketwrapper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/combined_error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/combined_error_socketwrapper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/errors.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/errors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/errors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/nnet_error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/nnet_error_socketwrapper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/svr_error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/svr_error_socketwrapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.html" afterPath="$PROJECT_DIR$/app.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/app/basic_strategy_order_book_websocket.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app/basic_strategy_profit.js" afterPath="$PROJECT_DIR$/js/app/basic_strategy_profit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js" afterPath="$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app/confidence_strategy_profit.js" afterPath="$PROJECT_DIR$/js/app/confidence_strategy_profit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js" afterPath="$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profits.html" afterPath="$PROJECT_DIR$/profits.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ticker/src/q_to_r.q" afterPath="$PROJECT_DIR$/../ticker/src/q_to_r.q" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ticker/src/tac.q" afterPath="$PROJECT_DIR$/../ticker/src/tac.q" />
@@ -44,7 +37,7 @@
       <file leaf-file-name="app.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.625" vertical-offset="288" max-vertical-offset="1590">
+            <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1590">
               <caret line="57" column="6" selection-start-line="34" selection-start-column="0" selection-end-line="57" selection-end-column="6" />
               <folding />
             </state>
@@ -54,80 +47,73 @@
       <file leaf-file-name="profits.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profits.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.375" vertical-offset="468" max-vertical-offset="1290">
-              <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="errors.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/errors.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6347032" vertical-offset="333" max-vertical-offset="1380">
-              <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nnet_error.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app/nnet_error.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="519" max-vertical-offset="1695">
-              <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+            <state vertical-scroll-proportion="-9.705882" vertical-offset="825" max-vertical-offset="1845">
+              <caret line="88" column="38" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="38" />
               <folding>
-                <element signature="e#2963#3004#0" expanded="false" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="svr_error.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app/svr_error.js">
+      <file leaf-file-name="confidence_strategy_profit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1725">
-              <caret line="60" column="35" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="820" max-vertical-offset="2055">
+              <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+              <folding>
+                <element signature="e#3969#4010#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basic_strategy_profit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="2070">
+              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arima_error.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app/arima_error.js">
+      <file leaf-file-name="profits.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app/profits.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1725">
-              <caret line="60" column="38" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="360">
+              <caret line="5" column="85" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="85" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app.js">
+      <file leaf-file-name="basic_strategy_profit_socketwrapper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-              <caret line="31" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="879" max-vertical-offset="1665">
+              <caret line="65" column="97" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combined_error.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app/combined_error.js">
+      <file leaf-file-name="confidence_strategy_profit_socketwrapper.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1725">
-              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.55947137" vertical-offset="654" max-vertical-offset="1665">
+              <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="errors.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app/errors.js">
+      <file leaf-file-name="errors.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/errors.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="1380">
+              <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -137,7 +123,17 @@
         <entry file="file://$PROJECT_DIR$/js/app/arima_error_socketwrapper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="1305">
-              <caret line="60" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+              <caret line="20" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basic_strategy_order_book_websocket.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_order_book_websocket.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1305">
+              <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -169,7 +165,6 @@
         <option value="$PROJECT_DIR$/js/app/websocket.js" />
         <option value="$PROJECT_DIR$/js/app/pred.js" />
         <option value="$PROJECT_DIR$/js/app/combined.js" />
-        <option value="$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js" />
         <option value="$PROJECT_DIR$/db.html" />
         <option value="$PROJECT_DIR$/js/app/arima_socketwrapper.js" />
         <option value="$PROJECT_DIR$/js/app/combined_socketwrapper.js" />
@@ -177,11 +172,7 @@
         <option value="$PROJECT_DIR$/js/app/svr_socketwrapper.js" />
         <option value="$PROJECT_DIR$/js/common.js" />
         <option value="$PROJECT_DIR$/js/profits.js" />
-        <option value="$PROJECT_DIR$/js/app/basic_strategy_profit.js" />
         <option value="$PROJECT_DIR$/js/app/main.js" />
-        <option value="$PROJECT_DIR$/js/app/confidence_strategy_profit.js" />
-        <option value="$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js" />
-        <option value="$PROJECT_DIR$/js/app/profits.js" />
         <option value="$PROJECT_DIR$/errors.js" />
         <option value="$PROJECT_DIR$/js/errors.js" />
         <option value="$PROJECT_DIR$/js/app/nnet_error_socketwrapper.js" />
@@ -194,8 +185,14 @@
         <option value="$PROJECT_DIR$/js/app/combined_error.js" />
         <option value="$PROJECT_DIR$/js/app/arima_error.js" />
         <option value="$PROJECT_DIR$/app.html" />
-        <option value="$PROJECT_DIR$/profits.html" />
         <option value="$PROJECT_DIR$/errors.html" />
+        <option value="$PROJECT_DIR$/js/app/basic_strategy_order_book_websocket.js" />
+        <option value="$PROJECT_DIR$/js/app/profits.js" />
+        <option value="$PROJECT_DIR$/js/app/confidence_strategy_profit.js" />
+        <option value="$PROJECT_DIR$/js/app/basic_strategy_profit.js" />
+        <option value="$PROJECT_DIR$/profits.html" />
+        <option value="$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js" />
+        <option value="$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js" />
       </list>
     </option>
   </component>
@@ -306,14 +303,10 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -321,6 +314,10 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -366,7 +363,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3285985" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20364584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -377,10 +373,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3285985" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -406,13 +403,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="1050">
-          <caret line="62" column="9" selection-start-line="9" selection-start-column="0" selection-end-line="62" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chart.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="855">
@@ -541,7 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="1740">
           <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,7 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1125">
           <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -581,7 +569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.0" vertical-offset="369" max-vertical-offset="1035">
           <caret line="63" column="7" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -589,7 +576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="1215">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -597,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -605,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1215">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -613,9 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="477" max-vertical-offset="1230">
           <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
-          <folding>
-            <element signature="e#2498#2539#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -623,7 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -631,7 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="975">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -639,25 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="1170">
           <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1740">
-          <caret line="96" column="35" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
-          <folding>
-            <element signature="e#3101#3142#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="519" max-vertical-offset="1290">
-          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,31 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
           <caret line="19" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1290">
-          <caret line="15" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/profits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <caret line="18" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1725">
-          <caret line="37" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
           <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,7 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1305">
           <caret line="60" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -713,7 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1305">
           <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="1305">
           <caret line="57" column="45" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
           <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -759,14 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/arima_error_socketwrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="1305">
-          <caret line="60" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/app/arima_error.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1725">
@@ -779,30 +701,90 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
           <caret line="31" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/errors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="1380">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/profits.html">
+    <entry file="file://$PROJECT_DIR$/js/app/arima_error_socketwrapper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.375" vertical-offset="468" max-vertical-offset="1290">
-          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="1305">
+          <caret line="20" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_order_book_websocket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
+          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.625" vertical-offset="288" max-vertical-offset="1590">
+        <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1590">
           <caret line="57" column="6" selection-start-line="34" selection-start-column="0" selection-end-line="57" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/errors.html">
+    <entry file="file://$PROJECT_DIR$/js/app/profits.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6347032" vertical-offset="333" max-vertical-offset="1380">
-          <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="5" column="85" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="820" max-vertical-offset="2055">
+          <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+          <folding>
+            <element signature="e#3969#4010#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profits.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.705882" vertical-offset="825" max-vertical-offset="1845">
+          <caret line="88" column="38" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="2070">
+          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/basic_strategy_profit_socketwrapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="879" max-vertical-offset="1665">
+          <caret line="65" column="97" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/confidence_strategy_profit_socketwrapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55947137" vertical-offset="654" max-vertical-offset="1665">
+          <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
           <folding />
         </state>
       </provider>
