@@ -94,7 +94,8 @@ tradingStrategy:{
 	publish_confidence_strategy_profit[dt;current_actual];
 	
 	data:select from final_predictions where i within((count final_predictions)-21;(count final_predictions)-2);
-	confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]];
+	/ confidence:confidence_interval[data[`actual];data[`predictions];last final_predictions[`actual];last final_predictions[`predictions]];
+	confidence:conf_calculate[current_actual;predicted];
 	trade_confidence[predicted;actual;current_actual;confidence;dt]}
 
 trade:{[predicted;actual;current_actual;dt]
@@ -105,6 +106,8 @@ trade_confidence:{[predicted;actual;current_actual;confidence;dt]
 	confidence:"i"$confidence;
 	if[(predicted>actual)&(not base_currency_confidence)&confidence;capital_confidence::(1%current_actual)*capital_confidence;base_currency_confidence::1;publish_order_book_confidence[dt;current_actual;`bid]];
 	if[(predicted<actual)&base_currency_confidence&confidence;capital_confidence::current_actual*capital_confidence;base_currency_confidence::0;publish_order_book_confidence[dt;current_actual;`ask]]}
+
+
 
 publish_nnet_web:{
 	web_entry:select dt: ts_to_unix[dt], actual, predictions from last nnet_predictions;
@@ -156,3 +159,8 @@ publish_order_book_basic:{[dt;current_actual;bid_ask]
 publish_order_book_confidence:{[dt;current_actual;bid_ask]
 	web_entry:`dt`current_actual`bid_ask!ts_to_unix[dt],current_actual,bid_ask;
 	sendData\:[Sub `web; (`table`type`data)!(`confidence_order_book;type web_entry; web_entry)]}
+
+get_ohlc_data_for_day:{[date]
+	ohlc_data:select ts_to_unix[start_dt], o, h, l,c from cdata where start_dt.date=date;
+	web_entry:ohlc_data;
+	sendData\:[Sub `web; (`table`type`data)!(`ohlc_day;type web_entry; web_entry)]}

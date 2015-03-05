@@ -87,7 +87,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
 
                 series: [{
                     name: 'Actual',
-                    enableMouseTracking: false
+                    enableMouseTracking: true
                 }, {
                     name: 'Prediction',
                     enableMouseTracking: true

@@ -59,11 +59,9 @@ define(["c"], function(c) {
                     //series_global.addPoint(y, true);
                     break;
                 case "nnet_mape":
-                    console.log(x);
                     //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
                     //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
                     var profit =[new Date(x.data.dt*1000).getTime(), x.data.mape];
-                    console.log(x.data.mape);
                     //this.series_actual.addPoint(act, true);
                     //console.log(x.data.actual);
                     //this.series_prediction.addPoint(pred, true);

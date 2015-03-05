@@ -63,13 +63,17 @@ define(["c"], function(c) {
                     //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
                     //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
                     var profit =[new Date(x.data.dt*1000).getTime(), x.data.capital];
-                    var oldProfit = parseFloat($("#basic_strategy_header").text().split("%")[0]);
+                    var oldProfit = parseFloat($("#basic_strategy_header_text").text().split("%")[0]);
                     if (oldProfit <= (((x.data.capital-100000)/100000)*100).toFixed(2)) {
-                        $("#basic_strategy_header").removeClass( "red" ).addClass( "green");
+                        $("#basic_strategy_header_text").removeClass( "red" ).addClass( "green");
+                        $("#basic_strategy_header_arrow").removeClass("red").addClass("green");
+                        $("#basic_strategy_header_arrow").removeClass("glyphicon-arrow-down").addClass("glyphicon-arrow-up");
                     } else{
-                        $("#basic_strategy_header").removeClass( "green" ).addClass( "red");
+                        $("#basic_strategy_header_text").removeClass( "green" ).addClass( "red");
+                        $("#basic_strategy_header_arrow").removeClass("green").addClass("red");
+                        $("#basic_strategy_header_arrow").removeClass("glyphicon-arrow-up").addClass("glyphicon-arrow-down");
                     }
-                    $("#basic_strategy_header").text((((x.data.capital-100000)/100000)*100).toFixed(2) + '%');
+                    $("#basic_strategy_header_text").text((((x.data.capital-100000)/100000)*100).toFixed(2) + '%');
                     //this.series_actual.addPoint(act, true);
                     //console.log(x.data.actual);
                     //this.series_prediction.addPoint(pred, true);
@@ -79,7 +83,6 @@ define(["c"], function(c) {
                     console.log(x);
                     console.log(x.data.bid_ask);
                     if(x.data.bid_ask == "bid") {
-                        alert("Hello");
                       //  $('#basic_strategy_table > tbody > tr:first').before('<tr><td>'+new Date(x.data.dt*1000)+'</td><td>'+ x.data.current_actual +'</td><td></td></tr>');
                         $('<tr><td>'+new Date(x.data.dt*1000)+'</td><td class="green">'+ x.data.current_actual+'</td><td></td></tr>').prependTo('#basic_strategy_table > tbody');
                     } else {

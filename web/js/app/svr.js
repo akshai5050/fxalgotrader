@@ -93,6 +93,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     enableMouseTracking: true
                 }]
             });
+
         }
     }
 

@@ -38,6 +38,8 @@ sdata:{[data]
 		web_entry:select dt: ts_to_unix[start_dt], o, h, l, c from last cdata;
 		sendData\:[Sub `web; (`table`type`data)!(`cdata;type web_entry; web_entry)]]
 	if[(("u"$data[`t][0]) = 00:00) & (ft=24:00);
+		get_ohlc_data_for_day[first temp[`date]];
+		0N!first temp[`date];
 		`cdata insert ((first temp[`date]) + st; first temp[`bid]; max temp[`bid]; min temp[`bid]; last temp[`bid]);
 		tac[];
 		get_train_data[];

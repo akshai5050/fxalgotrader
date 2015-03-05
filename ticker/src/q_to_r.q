@@ -40,12 +40,13 @@ arima_rmse:{
 	mape:avg(abs[arima_predictions[`actual]-arima_predictions[`predictions]]%arima_predictions[`actual])*100;
 	:rmse, mape}
 
-conf_calculate:{
+conf_calculate:{[current_actual;predicted]
 	sd:sqrt[(1%((count final_predictions)-1))*(sum((final_predictions[`actual]-final_predictions[`predictions]) xexp 2))];
 	x_bar:avg((final_predictions[`actual]-final_predictions[`predictions])%final_predictions[`actual]);
 	conf_interval_lower:x_bar - (1.96 * sd%sqrt[count final_predictions]);
 	conf_interval_upper:x_bar + (1.96 * sd%sqrt[count final_predictions]);
-	:conf_interval_lower, conf_interval_upper}
+	current_error:(current_actual-predicted)%current_actual;
+	:$[(current_error <= conf_interval_upper) & (current_error >= conf_interval_lower);1;0]}
 
 
 nnet_rmse:{

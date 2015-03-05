@@ -6,7 +6,10 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
             throw new TypeError("Prediction constructor cannot be called as a function");
         }
         this.timeframe = tf;
-        this.series_profit;
+        this.nnet_error;
+        this.svr_error;
+        this.arima_error;
+        this.combined_error;
         this.setSeries();
 
     }
@@ -30,7 +33,10 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                             // set up the updating of the chart each second
                             //this.setSeries(this.series[0], this.series[1]);
                             //this.series_prediction = this.series[1];
-                            self.series_profit = this.series[0];
+                            self.nnet_error = this.series[0];
+                            self.svr_error = this.series[1];
+                            self.arima_error = this.series[2];
+                            self.combined_error = this.series[3];
                             console.log(self);
                             //new ws(4321, 15, series_actual, series_prediction).openConnection()
                         }
@@ -58,7 +64,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     selected: 0
                 },
                 title: {
-                    text: 'NNET MAPE'
+                    text: 'MAPE'
                 },
                 credits: {
                     enabled: false
@@ -69,11 +75,16 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                 },
                 yAxis: {
                     title: {
-                        text: '% Error'
+                        text: 'Error (%)'
                     }
                 },
                 spline: {
                     connectNulls: true
+                },
+                plotOptions: {
+                    marker: {
+                        enabled: false
+                    }
                 },
                 legend: {
                     enabled: true
@@ -84,8 +95,24 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
 
 
                 series: [{
-                    name: 'Capital',
-                    enableMouseTracking: false,
+                    name: 'NNET',
+
+                    marker: {
+                        enabled: false
+                    }
+
+                }, {
+                    name: 'SVR',
+                    marker: {
+                        enabled: false
+                    }
+                }, {
+                    name: 'ARIMA',
+                    marker: {
+                        enabled: false
+                    }
+                }, {
+                    name: 'COMBINED',
                     marker: {
                         enabled: false
                     }
