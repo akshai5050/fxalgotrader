@@ -39,6 +39,7 @@ sdata:{[data]
 		sendData\:[Sub `web; (`table`type`data)!(`cdata;type web_entry; web_entry)]]
 	if[(("u"$data[`t][0]) = 00:00) & (ft=24:00);
 		get_ohlc_data_for_day[first temp[`date]];
+		get_trading_data_for_day[first temp[`date]];
 		0N!first temp[`date];
 		`cdata insert ((first temp[`date]) + st; first temp[`bid]; max temp[`bid]; min temp[`bid]; last temp[`bid]);
 		tac[];

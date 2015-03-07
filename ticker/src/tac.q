@@ -58,6 +58,8 @@ svr_predictions:([] dt:(); actual:(); predictions:());
 arima_predictions:([] dt:(); actual:(); predictions:());
 final_predictions:([] dt:(); actual:(); predictions:());
 
+tradebook:([] dt:(); capital:`float$())
+
 sliding_window:([] dt:(); v1:(); v2:(); v3:(); v4:(); v5:())
 
 predict1:`dt`pre!();();
@@ -150,6 +152,8 @@ publish_basic_strategy_profit:{[dt;current_actual]
 publish_confidence_strategy_profit:{[dt;current_actual]
 	/ 0N!$[base_currency;capital;(1%current_actual)*capital];
 	web_entry:`dt`capital!ts_to_unix[dt],$[base_currency_confidence;capital_confidence;(1%current_actual)*capital_confidence];
+	current_profit:$[base_currency_confidence;capital_confidence;(1%current_actual)*capital_confidence];
+	`tradebook insert (dt; "f"$current_profit);
 		sendData\:[Sub `web; (`table`type`data)!(`confidence_strategy_profit;type web_entry; web_entry)]}
 
 publish_order_book_basic:{[dt;current_actual;bid_ask]
@@ -164,3 +168,19 @@ get_ohlc_data_for_day:{[date]
 	ohlc_data:select ts_to_unix[start_dt], o, h, l,c from cdata where start_dt.date=date;
 	web_entry:ohlc_data;
 	sendData\:[Sub `web; (`table`type`data)!(`ohlc_day;type web_entry; web_entry)]}
+
+get_trading_data_for_day:{[date]
+	trading_data:select ts_to_unix[dt], capital from tradebook where dt.date=date;
+	0N!last trading_data;
+	0N!count trading_data;
+	web_entry:trading_data;
+	sendData\:[Sub `web; (`table`type`data)!(`trading_day;type web_entry; web_entry)];
+	get_trading_performance_for_day[trading_data]}
+
+get_trading_performance_for_day:{[trading_data]
+	starting_profit: first trading_data[`capital];
+	finishing_profit: last trading_data[`capital];
+	percentage_difference: ((finishing_profit-starting_profit)%starting_profit)*100;
+	web_entry:`starting_profit`finishing_profit`percentage_difference!starting_profit,finishing_profit,percentage_difference;
+	sendData\:[Sub `web; (`table`type`data)!(`trading_day_performance;type web_entry; web_entry)];
+	}

@@ -1,11 +1,12 @@
 define(["jquery", "highcharts-theme"], function($, Highcharts) {
     "use strict";
 
-    function ReportChart(data) {
+    function ReportChart(data, id) {
         if (!(this instanceof ReportChart)) {
             throw new TypeError("Prediction constructor cannot be called as a function");
         }
         this.series_global = data;
+        this.id = id;
         this.setSeries();
 
     }
@@ -31,7 +32,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     enabled: false
                 },
                 title: {
-                    text: 'GBP/USD ' + self.timeframe +  ' Min OHLC'
+                    text: 'GBP/USD ' + self.id +  ' OHLC'
                 },
                 xAxis: {
                     type: 'datetime',
@@ -57,7 +58,8 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     type: 'candlestick',
                     name: 'Random data',
                     data: self.series_global,
-                    enableMouseTracking: false
+                    enableMouseTracking: false,
+                    animation: false
                 }]
             });
         }

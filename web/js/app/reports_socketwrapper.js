@@ -1,5 +1,10 @@
 var days_hashmap = {};
+var days_profit_hashmap = {};
 var na = 1;
+var received_all_data = 0;
+var received_performance_data = 0;
+var formatted_date;
+
 define(["c", "jquery", "bootstrap"], function(c, $, bootstrap) {
     "use strict";
 
@@ -52,6 +57,7 @@ define(["c", "jquery", "bootstrap"], function(c, $, bootstrap) {
 
         dataHandler : function(data) {
             var x  = data.data;
+            var performance;
             switch(x.table) {
                 case "ohlc_day":
                     console.log(x.data);
@@ -63,22 +69,49 @@ define(["c", "jquery", "bootstrap"], function(c, $, bootstrap) {
                     var month = (m < 10) ? '0' + m : m;
                     var yy = date.getYear();
                     var year = (yy < 1000) ? yy + 1900 : yy;
-                    var formatted_date = day + "/" + month + "/" + year;
+                    formatted_date = day + "/" + month + "/" + year;
                     console.log(day + "/" + month + "/" + year);
                     days_hashmap[formatted_date] = data;
                     console.log(days_hashmap);
-                        $("#report_table tbody").append("<tr><td>" + formatted_date + "</td><td><button id=" + formatted_date + " type=\"button\" class=\"btn btn-primary report-btn\" data-toggle=\"modal\" data-target=\"#myModal\">OHLC</button></td></tr>");
-                    //var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
-                    //var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
-                    //var profit =[new Date(x.data.dt*1000).getTime(), x.data.mape];
-                    //console.log(x.data.mape);
-                    //this.series_actual.addPoint(act, true);
-                    //console.log(x.data.actual);
-                    //this.series_prediction.addPoint(pred, true);
-                    //this.series_profit.addPoint(profit, true);
+                    received_all_data += 0.5;
                     break;
+                case "trading_day":
+                    data = x.data;
+                    console.log(data);
+                    var date = new Date(data[0]["dt"]*1000);
+                    var d = date.getDate();
+                    var day = (d < 10) ? '0' + d : d;
+                    var m = date.getMonth() + 1;
+                    var month = (m < 10) ? '0' + m : m;
+                    var yy = date.getYear();
+                    var year = (yy < 1000) ? yy + 1900 : yy;
+                    formatted_date = day + "/" + month + "/" + year;
+                    days_profit_hashmap[formatted_date] = data;
+                    received_all_data += 0.5;
+                    console.log("Receiving trading day data" + formatted_date);
+                    break;
+                case "trading_day_performance":
+                    console.log("PERFORMANCE" + formatted_date);
+                    data = x.data;
+                    console.log(x.data);
 
+                    if (data["percentage_difference"] >= 0) {
+                        console.log("Data up");
+                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"green\"><span class=\"glyphicon green glyphicon-arrow-up\"></span>" + data["percentage_difference"] + "%</td>";
+                    } else {
+                        console.log("Data down");
+                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"red\"><span class=\"glyphicon red glyphicon-arrow-down\"></span>" + data["percentage_difference"] + "%</td>";
+                    }
+                    received_performance_data = 1;
+                    break;
             }
+            if (received_all_data == 1 && received_performance_data == 1) {
+                console.log("received all data!!!!" + performance);
+                $("#report_table tbody").append("<tr><td>" + formatted_date + "</td><td><button id=" + formatted_date + " type=\"button\" class=\"btn btn-primary report-btn\" data-toggle=\"modal\" data-target=\"#myModal\">OHLC</button></td><td><button id=" + formatted_date + " type=\"button\" class=\"btn btn-primary report-profit-btn\" data-toggle=\"modal\" data-target=\"#myModal\">Capital</button></td>" + performance + "</tr>" );
+                received_all_data = 0;
+                received_performance_data = 0;
+            }
+
         }
     }
 
