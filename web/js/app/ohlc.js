@@ -1,4 +1,4 @@
-define(["jquery", "highcharts-theme"], function($, Highcharts) {
+define(["jquery", "highcharts-theme", "indicators", "ema"], function($, Highcharts, Indicators, Ema) {
     "use strict";
 
     function Prediction(tf) {
@@ -47,6 +47,40 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     selected : 1 // day
                 },
 
+                indicators:[{
+                    id: 'GBPUSD',
+                    name: 'EMA 10',
+                    type: 'ema',
+                    showInLegend: true,
+                    params: {
+                        period: 10,
+                        index: 3
+                    },
+                    styles: {
+                        strokeWidth: 2,
+                        stroke: 'green',
+                        dashstyle: 'solid'
+                    }
+                },{
+                    id: 'GBPUSD',
+                    name: 'EMA 5',
+                    type: 'ema',
+                    showInLegend: true,
+                    params: {
+                        period: 5,
+                        index: 3
+                    },
+                    styles: {
+                        strokeWidth: 2,
+                        stroke: 'red',
+                        dashstyle: 'solid'
+                    }
+                }],
+
+                tooltip:{
+                    enabledIndicators: true
+                },
+
                 credits: {
                     enabled: false
                 },
@@ -84,15 +118,16 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                     }]
                 },
                 legend: {
-                    enabled: false
+                    enabled: true
                 },
                 exporting: {
                     enabled: false
                 },
                 series: [{
                     type: 'candlestick',
-                    name: 'Random data',
-                    enableMouseTracking: false
+                    name: 'OHLC',
+                    enableMouseTracking: false,
+                    id: 'GBPUSD'
                 }]
             });
         }

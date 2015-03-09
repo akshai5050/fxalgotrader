@@ -12,8 +12,9 @@ requirejs.config({
         "jquery": "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min",
         'highcharts-theme': "highcharts/themes/dark-unica",
         "highcharts": "highcharts/highstock",
-        "ws": "../app/websocket"
-
+        "ws": "../app/websocket",
+        "indicators": "highcharts/indicators",
+        "ema": "https://rawgit.com/blacklabel/indicators/master/js/ema"
     },
     shim: {
         highcharts: {
@@ -26,6 +27,14 @@ requirejs.config({
         },
         'ws':{
             'exports': 'web'
+        },
+        'indicators':{
+            deps: ['highcharts-theme'],
+            exports: 'Indicators'
+        },
+        'ema':{
+            deps: ['indicators'],
+            exports: 'Ema'
         }
     }
 });
