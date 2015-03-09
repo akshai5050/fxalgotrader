@@ -32,8 +32,6 @@ define(['jquery','require', 'app/reports_socketwrapper', 'app/report_chart', 'ap
             chart.destroy();
         }
         drawChart(this.id);
-
-
     });
 
     $(document).on('click', ".report-profit-btn", function(){
