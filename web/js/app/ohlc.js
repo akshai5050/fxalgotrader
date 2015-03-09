@@ -126,7 +126,7 @@ define(["jquery", "highcharts-theme", "indicators", "ema"], function($, Highchar
                 series: [{
                     type: 'candlestick',
                     name: 'OHLC',
-                    enableMouseTracking: false,
+                    enableMouseTracking: true,
                     id: 'GBPUSD'
                 }]
             });
