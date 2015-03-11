@@ -97,10 +97,10 @@ define(["c", "jquery", "bootstrap"], function(c, $, bootstrap) {
 
                     if (data["percentage_difference"] >= 0) {
                         console.log("Data up");
-                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"green\"><span class=\"glyphicon green glyphicon-arrow-up\"></span>" + data["percentage_difference"] + "%</td>";
+                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"green\"><span class=\"glyphicon green glyphicon-arrow-up\"></span>" + data["percentage_difference"].toFixed(2) + "%</td>";
                     } else {
                         console.log("Data down");
-                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"red\"><span class=\"glyphicon red glyphicon-arrow-down\"></span>" + data["percentage_difference"] + "%</td>";
+                        performance = "<td>" + data["starting_profit"] + "</td><td>" + data["finishing_profit"] + "</td><td class=\"red\"><span class=\"glyphicon red glyphicon-arrow-down\"></span>" + data["percentage_difference"].toFixed(2) + "%</td>";
                     }
                     received_performance_data = 1;
                     break;

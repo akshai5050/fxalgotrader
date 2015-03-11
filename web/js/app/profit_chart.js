@@ -32,7 +32,7 @@ define(["jquery", "highcharts-theme"], function($, Highcharts) {
                 },
 
                 title: {
-                    text: 'GBP/USD 30 Min OHLC Neural Net Predictions'
+                    text: 'GBP/USD ' + self.id +  ' Capital'
                 },
 
                 rangeSelector: {

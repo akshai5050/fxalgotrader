@@ -1,7 +1,7 @@
-files: key `:/Users/shaha1/q/tick_data/
-sym_location: `:/Users/shaha1/q/db1/;
-db_root:":/Users/shaha1/q/db/tick1/";
-dst:`:/Users/shaha1/db1
+files: key `:/Users/shaha1/q/tick_data_2010/
+sym_location: `:/Users/shaha1/q/db2/;
+db_root:":/Users/shaha1/q/db/tick2/";
+dst:`:/Users/shaha1/db2
 test:{
 	val:: 1;}
 get_date_data:{
@@ -16,7 +16,7 @@ splay_table_for_date:{
 	(` sv dst, `$((string x), "/trade/")) set t;
 	tab:: get_date_data[x]}
 larun:{
-	temp:: flip `sym`dt`bid`offer!("SZFF";",") 0:`$("/Users/shaha1/q/tick_data/", string x);
+	temp:: flip `sym`dt`bid`offer!("SZFF";",") 0:`$("/Users/shaha1/q/tick_data_2010/", string x);
 	dates:: (select distinct "d"$dt from temp)[`dt];
 	splay_table_for_date each dates}
 	

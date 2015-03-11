@@ -36,9 +36,8 @@ confidence_interval:{[actuals;predictionss;current_actuals;current_predicteds]
 	:a[0]}
 
 arima_rmse:{
-	rmse:sqrt((sum (arima_predictions[`actual]-arima_predictions[`predictions]) xexp 2)%count arima_predictions[`actual]);
-	mape:avg(abs[arima_predictions[`actual]-arima_predictions[`predictions]]%arima_predictions[`actual])*100;
-	:rmse, mape}
+	mape:avg(abs[(-20#arima_predictions[`actual])-(-20#arima_predictions[`predictions])]%(-20#arima_predictions[`actual]))*100;
+	:mape}
 
 conf_calculate:{[current_actual;predicted]
 	sd:sqrt[(1%((count final_predictions)-1))*(sum((final_predictions[`actual]-final_predictions[`predictions]) xexp 2))];
@@ -50,19 +49,16 @@ conf_calculate:{[current_actual;predicted]
 
 
 nnet_rmse:{
-	rmse:sqrt((sum (nnet_predictions[`actual]-nnet_predictions[`predictions]) xexp 2)%count nnet_predictions[`actual]);
-	mape:avg(abs[nnet_predictions[`actual]-nnet_predictions[`predictions]]%nnet_predictions[`actual])*100;
-	:rmse, mape}
+	mape:avg(abs[(-20#nnet_predictions[`actual])-(-20#nnet_predictions[`predictions])]%(-20#nnet_predictions[`actual]))*100;
+	:mape}
 
 svr_rmse:{
-	rmse:sqrt((sum (svr_predictions[`actual]-svr_predictions[`predictions]) xexp 2)%count svr_predictions[`actual]);
-	mape:avg(abs[svr_predictions[`actual]-svr_predictions[`predictions]]%svr_predictions[`actual])*100;	
-	:rmse, mape}
+	mape:avg(abs[(-20#svr_predictions[`actual])-(-20#svr_predictions[`predictions])]%(-20#svr_predictions[`actual]))*100;
+	:mape}
 
 combined_rmse:{
-	rmse:sqrt((sum (final_predictions[`actual]-final_predictions[`predictions]) xexp 2)%count final_predictions[`actual]);
-	mape:avg(abs[final_predictions[`actual]-final_predictions[`predictions]]%final_predictions[`actual])*100;
-	:rmse, mape}
+	mape:avg(abs[(-20#final_predictions[`actual])-(-20#final_predictions[`predictions])]%(-20#final_predictions[`actual]))*100;
+	:mape}
 
 
 add_hours:{[ts;hours_to_add]

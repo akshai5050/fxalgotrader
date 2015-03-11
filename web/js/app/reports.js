@@ -24,7 +24,6 @@ define(['jquery','require', 'app/reports_socketwrapper', 'app/report_chart', 'ap
     reportsSocketWrapper.openConnection();
 
     var reportChart = new ReportChart(new Array());
-    alert($(document));
 
     $(document).on('click', ".report-btn", function(){
         var chart = $('#daily_chart').highcharts();
