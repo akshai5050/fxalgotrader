@@ -4,7 +4,7 @@ library(ggplot2)
 library("ggthemes")
 
 pred_arima <- function(a) {
-   res <- forecast(auto.arima(a),h=1)$mean[1]*1.002
+   res <- forecast(auto.arima(a),h=1)$mean[1]
    res
 }	
 

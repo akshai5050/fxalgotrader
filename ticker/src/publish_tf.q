@@ -10,7 +10,7 @@ subscribe:{[] {h("sub";x)} `fx}
 
 upd:{x insert y; publish[`fx]}
 
-pubfx:{[h] `g insert (enlist last fx); h("upd";`fx;g)}
+pubfx:{[h] `g insert (enlist last fx); 0N!last fx; h("upd";`fx;g)}
 
 publish:{[t] if[t=`fx;{pubfx[x]} each Sub `fx]; delete from `g}
 

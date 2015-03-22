@@ -2,7 +2,7 @@
 \l /Users/shaha1/repo/fxalgotrader/ticker/src/setup.q
 Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/net_predict_15.r\")";
 Rcmd "source(\"/Users/shaha1/repo/fxalgotrader/predictors/svr_predict_15.r\")";
-
+0N!`hello
 h: hopen `::5012
 \p 4321
 i:0;

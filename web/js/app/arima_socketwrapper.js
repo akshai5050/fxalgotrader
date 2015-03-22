@@ -61,7 +61,7 @@ define(["c"], function(c) {
                     break;
                 case "arima_predictions":
                     var act =[new Date(x.data.dt*1000).getTime(), x.data.actual];
-                    var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions];
+                    var pred =[new Date(x.data.dt*1000).getTime(), x.data.predictions*1.8];
                     this.series_actual.addPoint(act, true);
                     //console.log(x.data.actual);
                     this.series_prediction.addPoint(pred, true);
